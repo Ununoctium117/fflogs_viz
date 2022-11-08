@@ -1,0 +1,127 @@
+# query Guilds($guildPageNum: Int!) {
+#     guildData {
+#         guilds(page: $guildPageNum) {
+#             total
+#             from
+#             to
+#             has_more_pages
+#             data {
+#                 id
+#                 name
+#                 type
+#                 tags {
+#                     id
+#                     name
+#                 }
+#             }
+#         }
+#     }
+#     ...rateLimit
+# }
+
+# query IndividualCharacter($name: String!, $server: String!, $region: String!) {
+#     characterData {
+#         character(name: $name, serverSlug: $server, serverRegion: $region) {
+#             gameData(forceUpdate: false)
+#             id
+#             lodestoneID
+#             name
+#         }
+#     }
+#     ...rateLimit
+# }
+
+query IndividualCharacter($id: Int!, $encounterId: Int!) {
+    characterData {
+        character(id: $id) {
+            id
+            lodestoneID
+            name
+            encounterRankings(encounterID: $encounterId)
+        }
+    }
+    ...rateLimit
+}
+
+# query FightRankings($encounterID: Int!, $pageNum: Int!) {
+#     worldData {
+#         encounter(id: $encounterID) {
+#             name
+#             fightRankings(
+#                 page: $pageNum
+#             )
+#         }
+#     }
+#     ...rateLimit
+# }
+
+# query Encounters {
+#     worldData {
+#         expansions {
+#             id
+#             name
+#             zones {
+#                 id
+#                 brackets {
+#                     min
+#                     max
+#                     bucket
+#                     type
+#                 }
+#                 difficulties {
+#                     id
+#                     name
+#                     sizes
+#                 }
+#                 encounters {
+#                     id
+#                     name
+#                 }
+#                 frozen
+#                 name
+#             }
+#         }
+#     }
+#     ...rateLimit
+# }
+
+# query Regions {
+#     worldData {
+#         regions {
+#             id
+#             compactName
+#             name
+#             slug
+#             subregions {
+#                 id
+#                 name
+#                 servers {
+#                     data {
+#                         id
+#                         name
+#                         normalizedName
+#                         slug
+#                     }
+#                     total
+#                     from
+#                     to
+#                     has_more_pages
+#                     current_page
+#                 }
+#             }
+#         }
+#     }
+#     ...rateLimit
+# }
+
+query EmptyQuery {
+    ...rateLimit
+}
+
+fragment rateLimit on Query {
+    rateLimitData {
+        limitPerHour
+        pointsSpentThisHour
+        pointsResetIn
+    }
+}

@@ -1,0 +1,43 @@
+query ReportFights($code: String!) {
+    reportData {
+        report(code: $code) {
+            fights {
+                enemyNPCs {
+                    gameID
+                    id
+                    instanceCount
+                }
+                boundingBox {
+                    minX
+                    maxX
+                    minY
+                    maxY
+                }
+                startTime
+                endTime
+                fightPercentage
+                kill
+                id
+            }
+
+            masterData(translate: false) {
+                actors {
+                    gameID
+                    id
+                    name
+                    type
+                    subType
+                }
+            }
+        }
+    }
+    ...rateLimit
+}
+
+fragment rateLimit on Query {
+    rateLimitData {
+        limitPerHour
+        pointsSpentThisHour
+        pointsResetIn
+    }
+}

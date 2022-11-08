@@ -1,0 +1,6 @@
+/target
+/.env
+/queries.rs
+/data
+test.json
+output*

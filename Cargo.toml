@@ -1,0 +1,17 @@
+[package]
+name = "ff_mechanic_viz"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cairo-rs = { version = "0.16.1", features = ["png"] }
+dotenv = "0.15.0"
+graphql_client = { version = "0.11.0", features = ["reqwest"] }
+humantime = "2.1.0"
+ordered-float = "3.4.0"
+reqwest = "0.11.12"
+serde = { version = "1.0.147", features = ["derive"] }
+serde_json = "1.0.87"
+tokio = { version = "1.21.2", features = ["rt", "rt-multi-thread", "net", "macros", "time"] }
